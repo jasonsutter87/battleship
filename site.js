@@ -34,16 +34,36 @@ $(document).ready(function() {
         opponentGuesses = createBoard(opponentGuesses)
         opponentBoard  = createBoard(opponentBoard)
 
-        createGUI()
+        createGUI("playersGameBoardGuesses")
+        createGUI("playersGameBoard")
     }
 
-    let createGUI = () => {
-        console.log('TODO: Create GUI: grid with 11 columns 11 rows')
-        console.log('TODO: Create GUI: headers first col/row with A-J or 1-10')
+    let createGUI = board => {
+
+        
+        const gameBoard = $('#' + board + '');
+
+        for (let k = 0; k < 11; k++) {
+          const row = $(`<div class="row" rowNum="${k}"></div>`);
+          
+          for (let j = 0; j < 11; j++) {
+            const spot = $(`<div class="spot" spotNum="${j}"></div>`);
+            row.append(spot);
+          }
+        
+          gameBoard.append(row);
+        }
+
     }
+
+
  
     let startGame = () => {
         gameStarted = true;
+        init()
+        $('#startGame').css('display', 'none')
+        $('#playGame').css('display', 'block')
+        $('.all-pieces').css('display', 'block')
         gameloop()
     }
 
@@ -70,8 +90,6 @@ $(document).ready(function() {
                 checkForWinner()
             } else {
                 nextToPlacePiece()
-                
-
             }
         }   
     }
@@ -122,20 +140,21 @@ $(document).ready(function() {
     }
 
 
-    //runner
-    init()
+
 
     //click handlers
     $(".draggable").draggable({
+        grid: [50, 50],
         stop: function(event, ui) {
             // 'ui.position' contains the final position of the element
             var left = ui.position.left;
             var top = ui.position.top;
-
+    
             // Log the final position
             console.log("Left: " + left + ", Top: " + top);
         }
     });
+    
 
     $('.rotatable').on('dblclick', e => {
         console.log($(e.target))
