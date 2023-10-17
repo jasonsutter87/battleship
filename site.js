@@ -81,8 +81,23 @@ $(document).ready(function() {
     let gameloop = () => {
         if(gameStarted){
             console.log('game has started')
-            checkForWinner()
+
+            if(isPlayerDonePlacing && isOpponentDonePlacing) {
+                checkForWinner()
+            } else {
+                nextToPlacePiece()
+                
+
+            }
         }   
+    }
+
+    let nextToPlacePiece = () => {
+        if(currentPlayer == "you") {
+            //todo: 
+        } else {
+            //todo: 
+        }
     }
 
     let reduceBoard = board => {
