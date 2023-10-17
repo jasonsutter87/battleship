@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jQuery Draggable Example</title>
+    <title>BattleShip</title>
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -12,11 +12,20 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <style>
+
+        body {
+            overflow: hidden;
+        }
+
         /* Add custom styles for draggable elements */
-        .draggable {
-            width: 100px;
-            height: 100px;
-            background-color: #3498db;
+
+        .ship {
+            display: inline-block;
+        }
+
+        .ship img {
+            width: auto;
+            height: 50px;
             color: #ffffff;
             text-align: center;
             line-height: 100px;
@@ -27,9 +36,35 @@
 <body>
     <h1>jQuery Draggable Example</h1>
     <button id="startGame">start game</button>
+    <button id="playGame">play game</button>
+    <br>
+    <br>
+    <br>
+    <br>
 
-    <div class="draggable">Drag me</div>
-
+    <div id="aircraft-carrier" class="draggable ship rotatable">
+        <img src="images/Aircraft_Carrier.webp" alt="" rotated="false">
+    </div>
+    <br>
+    <br>
+    <div id="battleship" class="draggable ship rotatable">
+        <img src="images/battleship.webp" alt="" rotated="false">
+    </div>
+    <br>
+    <br>
+    <div id="destroyer" class="draggable ship rotatable">
+        <img src="images/destroyer.webp" alt="" rotated="false">
+    </div>
+    <br>
+    <br>
+    <div id="cruiser" class="draggable ship rotatable">
+        <img src="images/cruiser.webp" alt="" rotated="false">
+    </div>
+    <br>
+    <br>
+    <div id="submarine" class="draggable ship rotatable">
+        <img src="images/submarine.webp" alt="" rotated="false">
+    </div>
 
     <script src="site.js"></script>
 </body>

@@ -105,18 +105,15 @@ $(document).ready(function() {
     }
     
     let checkForWinner = () => {
-    let result;
-    let count;
+        let resultPlayer = reduceBoard(playersBoard)
+        let resultOpponent = reduceBoard(opponentBoard)
 
-    resultPlayer = reduceBoard(playersBoard)
-    resultOpponent = reduceBoard(opponentBoard)
+        let countPlayer = countOccurrences(resultPlayer, "X");
+        let countOpponent = countOccurrences(resultOpponent, "X");
 
-    countPlayer = countOccurrences(resultPlayer, "X");
-    countOpponent = countOccurrences(resultOpponent, "X");
-
-    if(countPlayer == 18 || countOpponent == 18) {
-        gameWon()
-    }
+        if(countPlayer == 18 || countOpponent == 18) {
+            gameWon()
+        }
     }
 
     let gameWon = () => {
@@ -140,7 +137,28 @@ $(document).ready(function() {
         }
     });
 
+    $('.rotatable').on('dblclick', e => {
+        console.log($(e.target))
+        if($(e.target).attr('rotated') == "false" ) {
+            $(e.target).css('transform', 'rotate(90deg)')
+            $(e.target).attr('rotated', 'true')
+        } else {
+            $(e.target).css('transform', 'rotate(0deg)')
+            $(e.target).attr('rotated', 'false')
+        }
+    })
+
     $('#startGame').on('click', () => {
         startGame();
+    })
+
+    $('#playGame').on('click', () => {
+       // Remove the draggable functionality and unbind its event handlers
+        $('.ship').draggable('destroy');
+
+        // Remove the rotatable functionality and unbind its event handlers
+        $('.ship').off('dblclick');
+
+
     })
 });
