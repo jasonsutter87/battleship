@@ -159,6 +159,7 @@ $(document).ready(function() {
         // Remove the rotatable functionality and unbind its event handlers
         $('.ship').off('dblclick');
 
+        $('.ship').find('img').css('cursor', 'default')
 
     })
 });
