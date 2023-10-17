@@ -59,23 +59,7 @@ $(document).ready(function() {
             boardType.push(row)
         }
 
-       
-
-        if( boardType == "playersBoard") {
-            playersBoard = boardType
-        }
-        if( boardType == "playersGuesses") {
-            playersGuesses = boardType
-        }
-        if( boardType == "opponentGuesses") {
-            opponentGuesses = boardType
-        }
-        if( boardType == "opponentBoard") {
-            opponentBoard = boardType
-        }
-
         return boardType
-
     }     
 
     let gameloop = () => {
