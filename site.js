@@ -42,12 +42,22 @@ $(document).ready(function() {
 
         
         const gameBoard = $('#' + board + '');
+        const gameletters = ['', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
 
         for (let k = 0; k < 11; k++) {
-          const row = $(`<div class="row" rowNum="${k}"></div>`);
-          
+            let row = $(`<div class="row" rowNum="${k}"></div>`);
+        
           for (let j = 0; j < 11; j++) {
-            const spot = $(`<div class="spot" spotNum="${j}"></div>`);
+            let spot;
+            
+            if(k == 0  && j >= 1) {
+                spot = $(`<div class="spot" spotNum="${j}">${j}</div>`);
+            } else if(j == 0 && k > 0) {
+                spot = $(`<div class="spot" spotNum="${j}">${gameletters[k].toUpperCase()}</div>`);
+
+            }else {
+                spot = $(`<div class="spot" spotNum="${j}"></div>`);
+            }
             row.append(spot);
           }
         
@@ -56,8 +66,6 @@ $(document).ready(function() {
 
     }
 
-
- 
     let startGame = () => {
         gameStarted = true;
         init()
@@ -81,18 +89,6 @@ $(document).ready(function() {
 
         return boardType
     }     
-
-    let gameloop = () => {
-        if(gameStarted){
-            console.log('game has started')
-
-            if(isPlayerDonePlacing && isOpponentDonePlacing) {
-                checkForWinner()
-            } else {
-                nextToPlacePiece()
-            }
-        }   
-    }
 
     let nextToPlacePiece = () => {
         if(currentPlayer == "you") {
@@ -137,6 +133,18 @@ $(document).ready(function() {
     let gameWon = () => {
         winner = currentPlayer
         alert(`The game has been won by: ${winner}`)
+    }
+
+    let gameloop = () => {
+        if(gameStarted){
+            console.log('game has started')
+
+            if(isPlayerDonePlacing && isOpponentDonePlacing) {
+                checkForWinner()
+            } else {
+                nextToPlacePiece()
+            }
+        }   
     }
 
 

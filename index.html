@@ -17,7 +17,6 @@
             overflow: hidden;
         }
 
-        /* Add custom styles for draggable elements */
 
         .ship {
             display: inline-block;
@@ -25,16 +24,14 @@
 
         .ship img {
             width: auto;
-            height: 50px;
+            height: 3vh;
             color: #ffffff;
             text-align: center;
             line-height: 100px;
             cursor: move;
         }
 
-        .row {
-            display: flex;
-        }
+   
 
         .game-area {
             margin: 0 auto;
@@ -45,11 +42,19 @@
             align-items: center;
         }
 
-                .spot {
-            width: 50px;
-            height: 50px;
+        .spot {
+            width: 3vh;
+            height: 3vh;
             background: orange;
             border: 1px solid white;
+        }
+
+        .spot[spotnum="0"] {
+            background-color: grey;
+        }
+
+        .row[rownum="0"] > .spot {
+            background-color: grey;
         }
 
         section#playersGameBoard {
@@ -66,6 +71,24 @@
         #playGame {
             display: none;
         }
+
+
+        .game-container {
+
+            margin: 0 auto; 
+            overflow: hidden; 
+            height: 38vh;
+        }
+
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(11, 1fr); 
+            grid-template-rows: repeat(11, 1fr); 
+            gap: 1px; 
+        }
+
+     
+
     </style>
 </head>
 <body>
@@ -78,8 +101,20 @@
         <br>
         <br>
 
-            <section id="playersGameBoardGuesses"></section>
-            <section id="playersGameBoard"></section>
+        <section>
+            <div class="game-container">
+                <div class="game-board" id="playersGameBoardGuesses">
+                </div>
+            </div>
+        </section>
+
+            
+        <section>
+            <div class="game-container">
+                <div class="game-board" id="playersGameBoard">
+                </div>
+            </div>
+        </section>
 
     </div>
 
