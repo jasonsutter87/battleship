@@ -35,7 +35,9 @@ $(document).ready(function() {
         opponentBoard  = createBoard(opponentBoard)
 
         createGUI("playersGameBoardGuesses")
-        createGUI("playersGameBoard")
+        // createGUI("playersGameBoard")
+
+        $('#playersGameBoard').css('display', 'flex')
     }
 
     let createGUI = board => {
@@ -56,7 +58,7 @@ $(document).ready(function() {
                 spot = $(`<div class="spot" spotNum="${j}">${gameletters[k].toUpperCase()}</div>`);
 
             }else {
-                spot = $(`<div class="spot" spotNum="${j}"></div>`);
+                spot = $(`<div class="spot droppable" spotNum="${j}"></div>`);
             }
             row.append(spot);
           }
@@ -148,18 +150,31 @@ $(document).ready(function() {
     }
 
 
-
-
-    //click handlers
     $(".draggable").draggable({
-        grid: [50, 50],
-        stop: function(event, ui) {
-            // 'ui.position' contains the final position of the element
-            var left = ui.position.left;
-            var top = ui.position.top;
+        cursorAt: { left: 0, top: 0 },
+        stop: function (event, ui) {
+            // Adjust the position to ensure the left edge is aligned
+            ui.helper.css({
+            left:  ui.position.left,
+            top: ui.position.top // Maintain the top position
+            });
+        }
+    });
+
+  
+
+    $(".droppable").droppable({
+        draggable: ".draggable",
+        drop: function(event, ui) {
+          console.log(event)
+          
+          var rowId = $(this).attr("spotNum");
+          var columnID = $(this).parent().attr("rownum");
+          var columnName = $(this).siblings()
+          console.log("rowId: " + rowId);
+          console.log("columnID: " + columnID);
+          console.log(columnName);
     
-            // Log the final position
-            console.log("Left: " + left + ", Top: " + top);
         }
     });
     

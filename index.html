@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,90 +12,13 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    <style>
-
-        body {
-            overflow: hidden;
-        }
-
-
-        .ship {
-            display: inline-block;
-        }
-
-        .ship img {
-            width: auto;
-            height: 3vh;
-            color: #ffffff;
-            text-align: center;
-            line-height: 100px;
-            cursor: move;
-        }
-
-   
-
-        .game-area {
-            margin: 0 auto;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .spot {
-            width: 3vh;
-            height: 3vh;
-            background: orange;
-            border: 1px solid white;
-        }
-
-        .spot[spotnum="0"] {
-            background-color: grey;
-        }
-
-        .row[rownum="0"] > .spot {
-            background-color: grey;
-        }
-
-        section#playersGameBoard {
-            margin-top: 2rem;
-        }
-
-        .all-pieces {
-            position: fixed;
-            display: none;
-            top: 125px;
-            left: 125px;
-        }
-
-        #playGame {
-            display: none;
-        }
-
-
-        .game-container {
-
-            margin: 0 auto; 
-            overflow: hidden; 
-            height: 38vh;
-        }
-
-        .game-board {
-            display: grid;
-            grid-template-columns: repeat(11, 1fr); 
-            grid-template-rows: repeat(11, 1fr); 
-            gap: 1px; 
-        }
-
-     
-
-    </style>
+    <link rel="stylesheet" href="./static/src/css/styles.css">
 </head>
+
 <body>
     <div class="game-area">
         <h1>BattleShip!</h1>
-        
+
         <button id="startGame">start game</button>
         <br>
         <button id="playGame">play game</button>
@@ -102,19 +26,165 @@
         <br>
 
         <section>
-            <div class="game-container">
+            <div class="game-container " style="display: none;">
                 <div class="game-board" id="playersGameBoardGuesses">
                 </div>
             </div>
         </section>
 
-            
+
         <section>
             <div class="game-container">
-                <div class="game-board" id="playersGameBoard">
-                </div>
+                    <div class="game-board" id="playersGameBoard" style="display: none;">
+                        <div class="row" rownum="0">
+                            <div class="spot droppable" spotnum="0"></div>
+                            <div class="spot" spotnum="1">1</div>
+                            <div class="spot" spotnum="2">2</div>
+                            <div class="spot" spotnum="3">3</div>
+                            <div class="spot" spotnum="4">4</div>
+                            <div class="spot" spotnum="5">5</div>
+                            <div class="spot" spotnum="6">6</div>
+                            <div class="spot" spotnum="7">7</div>
+                            <div class="spot" spotnum="8">8</div>
+                            <div class="spot" spotnum="9">9</div>
+                            <div class="spot" spotnum="10">10</div>
+                        </div>
+                        <div class="row" rownum="1">
+                            <div class="spot" spotnum="0">A</div>
+                            <div class="spot droppable" spotnum="1"></div>
+                            <div class="spot droppable" spotnum="2"></div>
+                            <div class="spot droppable" spotnum="3"></div>
+                            <div class="spot droppable" spotnum="4"></div>
+                            <div class="spot droppable" spotnum="5"></div>
+                            <div class="spot droppable" spotnum="6"></div>
+                            <div class="spot droppable" spotnum="7"></div>
+                            <div class="spot droppable" spotnum="8"></div>
+                            <div class="spot droppable" spotnum="9"></div>
+                            <div class="spot droppable" spotnum="10"></div>
+                        </div>
+                        <div class="row" rownum="2">
+                            <div class="spot" spotnum="0">B</div>
+                            <div class="spot droppable" spotnum="1"></div>
+                            <div class="spot droppable" spotnum="2"></div>
+                            <div class="spot droppable" spotnum="3"></div>
+                            <div class="spot droppable" spotnum="4"></div>
+                            <div class="spot droppable" spotnum="5"></div>
+                            <div class="spot droppable" spotnum="6"></div>
+                            <div class="spot droppable" spotnum="7"></div>
+                            <div class="spot droppable" spotnum="8"></div>
+                            <div class="spot droppable" spotnum="9"></div>
+                            <div class="spot droppable" spotnum="10"></div>
+                        </div>
+                        <div class="row" rownum="3">
+                            <div class="spot" spotnum="0">C</div>
+                            <div class="spot droppable" spotnum="1"></div>
+                            <div class="spot droppable" spotnum="2"></div>
+                            <div class="spot droppable" spotnum="3"></div>
+                            <div class="spot droppable" spotnum="4"></div>
+                            <div class="spot droppable" spotnum="5"></div>
+                            <div class="spot droppable" spotnum="6"></div>
+                            <div class="spot droppable" spotnum="7"></div>
+                            <div class="spot droppable" spotnum="8"></div>
+                            <div class="spot droppable" spotnum="9"></div>
+                            <div class="spot droppable" spotnum="10"></div>
+                        </div>
+                        <div class="row" rownum="4">
+                            <div class="spot" spotnum="0">D</div>
+                            <div class="spot droppable" spotnum="1"></div>
+                            <div class="spot droppable" spotnum="2"></div>
+                            <div class="spot droppable" spotnum="3"></div>
+                            <div class="spot droppable" spotnum="4"></div>
+                            <div class="spot droppable" spotnum="5"></div>
+                            <div class="spot droppable" spotnum="6"></div>
+                            <div class="spot droppable" spotnum="7"></div>
+                            <div class="spot droppable" spotnum="8"></div>
+                            <div class="spot droppable" spotnum="9"></div>
+                            <div class="spot droppable" spotnum="10"></div>
+                        </div>
+                        <div class="row" rownum="5">
+                            <div class="spot" spotnum="0">E</div>
+                            <div class="spot droppable" spotnum="1"></div>
+                            <div class="spot droppable" spotnum="2"></div>
+                            <div class="spot droppable" spotnum="3"></div>
+                            <div class="spot droppable" spotnum="4"></div>
+                            <div class="spot droppable" spotnum="5"></div>
+                            <div class="spot droppable" spotnum="6"></div>
+                            <div class="spot droppable" spotnum="7"></div>
+                            <div class="spot droppable" spotnum="8"></div>
+                            <div class="spot droppable" spotnum="9"></div>
+                            <div class="spot droppable" spotnum="10"></div>
+                        </div>
+                        <div class="row" rownum="6">
+                            <div class="spot" spotnum="0">F</div>
+                            <div class="spot droppable" spotnum="1"></div>
+                            <div class="spot droppable" spotnum="2"></div>
+                            <div class="spot droppable" spotnum="3"></div>
+                            <div class="spot droppable" spotnum="4"></div>
+                            <div class="spot droppable" spotnum="5"></div>
+                            <div class="spot droppable" spotnum="6"></div>
+                            <div class="spot droppable" spotnum="7"></div>
+                            <div class="spot droppable" spotnum="8"></div>
+                            <div class="spot droppable" spotnum="9"></div>
+                            <div class="spot droppable" spotnum="10"></div>
+                        </div>
+                        <div class="row" rownum="7">
+                            <div class="spot" spotnum="0">G</div>
+                            <div class="spot droppable" spotnum="1"></div>
+                            <div class="spot droppable" spotnum="2"></div>
+                            <div class="spot droppable" spotnum="3"></div>
+                            <div class="spot droppable" spotnum="4"></div>
+                            <div class="spot droppable" spotnum="5"></div>
+                            <div class="spot droppable" spotnum="6"></div>
+                            <div class="spot droppable" spotnum="7"></div>
+                            <div class="spot droppable" spotnum="8"></div>
+                            <div class="spot droppable" spotnum="9"></div>
+                            <div class="spot droppable" spotnum="10"></div>
+                        </div>
+                        <div class="row" rownum="8">
+                            <div class="spot" spotnum="0">H</div>
+                            <div class="spot droppable" spotnum="1"></div>
+                            <div class="spot droppable" spotnum="2"></div>
+                            <div class="spot droppable" spotnum="3"></div>
+                            <div class="spot droppable" spotnum="4"></div>
+                            <div class="spot droppable" spotnum="5"></div>
+                            <div class="spot droppable" spotnum="6"></div>
+                            <div class="spot droppable" spotnum="7"></div>
+                            <div class="spot droppable" spotnum="8"></div>
+                            <div class="spot droppable" spotnum="9"></div>
+                            <div class="spot droppable" spotnum="10"></div>
+                        </div>
+                        <div class="row" rownum="9">
+                            <div class="spot" spotnum="0">I</div>
+                            <div class="spot droppable" spotnum="1"></div>
+                            <div class="spot droppable" spotnum="2"></div>
+                            <div class="spot droppable" spotnum="3"></div>
+                            <div class="spot droppable" spotnum="4"></div>
+                            <div class="spot droppable" spotnum="5"></div>
+                            <div class="spot droppable" spotnum="6"></div>
+                            <div class="spot droppable" spotnum="7"></div>
+                            <div class="spot droppable" spotnum="8"></div>
+                            <div class="spot droppable" spotnum="9"></div>
+                            <div class="spot droppable" spotnum="10"></div>
+                        </div>
+                        <div class="row" rownum="10">
+                            <div class="spot" spotnum="0">J</div>
+                            <div class="spot droppable" spotnum="1"></div>
+                            <div class="spot droppable" spotnum="2"></div>
+                            <div class="spot droppable" spotnum="3"></div>
+                            <div class="spot droppable" spotnum="4"></div>
+                            <div class="spot droppable" spotnum="5"></div>
+                            <div class="spot droppable" spotnum="6"></div>
+                            <div class="spot droppable" spotnum="7"></div>
+                            <div class="spot droppable" spotnum="8"></div>
+                            <div class="spot droppable" spotnum="9"></div>
+                            <div class="spot droppable" spotnum="10"></div>
+                        </div>
+                    </div>
             </div>
         </section>
+
+
+
 
     </div>
 
@@ -145,4 +215,5 @@
 
     <script src="site.js"></script>
 </body>
+
 </html>
